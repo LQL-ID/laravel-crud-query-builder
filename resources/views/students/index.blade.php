@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-end my-3">
-                        <a href="" class="btn btn-success btn-sm">Create Student Data</a>
+                        <a href="{{ route('students.create') }}" class="btn btn-success btn-sm">Create Student Data</a>
                     </div>
                     <table class="table table-bordered">
                         <thead>
