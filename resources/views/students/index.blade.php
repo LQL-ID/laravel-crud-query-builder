@@ -8,6 +8,11 @@
                     <div class="d-flex align-items-center justify-content-end my-3">
                         <a href="{{ route('students.create') }}" class="btn btn-success btn-sm">Create Student Data</a>
                     </div>
+                    @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -19,16 +24,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse($students as $student)
                             <tr>
-                                <th class="text-center align-middle" scope="row">1</th>
-                                <td class="text-center align-middle">Jacob</td>
-                                <td class="text-center align-middle">Thornton</td>
-                                <td class="text-center align-middle">@fat</td>
+                                <th class="text-center align-middle" scope="row">{{ $loop->iteration }}</th>
+                                <td class="text-center align-middle">{{ $student->name }}</td>
+                                <td class="text-center align-middle">{{ $student->faculty }}</td>
+                                <td class="text-center align-middle">{{ $student->major }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ route('students.destroy', $student->id) }}" class="btn btn-danger btn-sm btn-delete">Delete</a>
                                 </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center">Empty</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
