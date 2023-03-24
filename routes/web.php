@@ -26,4 +26,7 @@ Route::group([
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store');
+    Route::get('/{student}/edit', 'edit')->name('edit');
+    Route::put('/{student}', 'update')->name('update');
+    Route::delete('/{student}/destroy', 'destroy')->name('destroy');
 });
